@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!--引入jQuery库-->
+    <script src="http://static.runoob.com/assets/jquery-validation-1.14.0/lib/jquery.js"></script>
+    <!--前端验证插件-->
+    <script src="http://static.runoob.com/assets/jquery-validation-1.14.0/dist/jquery.validate.min.js"></script>
+    <!--默认的验证错误信息显示内容(中文)-->
+    <script src="http://static.runoob.com/assets/jquery-validation-1.14.0/dist/localization/messages_zh.js"></script>
+<meta charset="UTF-8">
+    <!--引用layer库-->
+    <script src="../layer-master/layer-master/src/layer.js"></script>
+
+    <title>签到页面检测</title>
+</head>
+<body>
+<a href="javascript:;" id="btn1">警告窗口</a><br/>
+<a href="javascript:;" id="btn2">询问窗口</a><br/>
+<a href="javascript:;" id="btn3" onclick="alert('Warning')">提示窗口</a><br/>
+<a href="javascript:;" id="btn4">iframe窗口-加载页面(重要)</a><br/>
+
+<script>
+    // layer.msg('欢迎访问 hangge.com');
+    $("#btn2").click(function () {
+        /*支持内容中写代码等等*/
+        layer.confirm("目光<strong style=\"color:pink;\">灼灼</strong>", {//内容,属性,点击yes后触发的行为
+            title: "询问窗口",//设置标题
+            btn: ['关闭'],
+            area: ["50px", "30px"],//设置弹出框大小
+            icon: 3,//设置图标
+            shade: 0.5,//设置遮罩阴影程度(默认值为0.3)
+            closeBtn: 0,//设置关闭键
+            btnAlign: "c",//按钮居中(默认右对齐)
+        }, function (index) {
+            console.log(this, index);
+            layer.close(index);//点击后使弹窗关闭
+            layer.alert("111", {
+                title: "签到",
+                btn: ['确定'],
+                area: ["50px", "30px"],//设置弹出框大小
+                icon: 3,//设置图标
+                shade: 0.5,//设置遮罩阴影程度(默认值为0.3)
+                closeBtn: 0,//设置关闭键
+                btnAlign: "c",//按钮居中(默认右对齐)
+            }, function (index) {
+                console.log(this, index);
+                // show "success" on html using DOM
+                layer.close(index);//点击后使弹窗关闭
+            });
+        });
+    });
+
+    $("#btn1").click(function () {
+        layer.confirm("确认签到？", {
+            title:"Confirmation",
+            btn: ['确定'],
+            area: ["50px", "30px"],//设置弹出框大小
+            icon: 3,//设置图标
+            shade: 0.5,//设置遮罩阴影程度(默认值为0.3)
+            closeBtn: 0,//设置关闭键
+            btnAlign: "c",//按钮居中(默认右对齐)
+        }, function (index) {
+            layer.close(index);//点击后使弹窗关闭
+            var para = document.createElement("p");
+            var suc = document.createTextNode("签到成功");
+            para.appendChild(suc);
+            var element = document.getElementById("btn1");
+            element.appendChild(para);
+
+        });
+    });
+
+</script>
+<!--
+<form id="postForm" class="js-ajax-form" action="/entry/sign" method="post" enctype="multipart/form-data">
+    <input id="meetingId" type="hidden" name="meetingId" value="5854E46F4A49F7ADF9C33DC5901307461">
+    <input id="signFlag" type="hidden" name="signFlag" value="1">
+    <input id="userId" type="hidden" name="userId" value="1" value="13599988887">
+    <input id="faceFlag" type="hidden" name="faceFlag" value="0">
+    <input id="num" type="hidden" name="signId" value="26545">
+    <button class="btn btn-info js-ajax-submit" type="submit" style="widht:110px;margin: 30px auto 0; display: block">签到</button>
+</form>
+<script>
+    //把以上表单通过Javascript提交
+    $("#postForm").submit();
+    document.querySelector('input[name="theNameOfYourInput"]').value = 'theValue';
+    document.querySelector('form').submit();
+</script>
+-->
+</body>
+</html>
